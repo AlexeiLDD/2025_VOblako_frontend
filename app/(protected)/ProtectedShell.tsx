@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { ReactNode } from "react";
-import { ResponsiveShell, type ResponsiveShellProps } from "@/app/components/Layout/ResponsiveShell";
+import { ResponsiveShell, type ResponsiveShellProps } from "@/app/(protected)/components/Layout/ResponsiveShell";
 
 type ProtectedShellProps = Omit<ResponsiveShellProps, "children" | "onLogout"> & {
   children: ReactNode;

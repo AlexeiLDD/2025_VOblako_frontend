@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { type SidebarNavItem } from "@/app/components/Layout/Sidebar";
+import { type SidebarNavItem } from "@/app/(protected)/components/Layout/Sidebar";
 import { authStore } from "@/app/api/auth/store";
 import styles from "@/app/layout.module.css";
 import ProtectedShell from "./ProtectedShell";
