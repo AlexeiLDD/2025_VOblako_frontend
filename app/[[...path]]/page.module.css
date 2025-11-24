@@ -1,0 +1,16 @@
+.workspaceContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 100vh;
+}
+
+.gridWrapper {
+  flex: 0 0 auto;
+}
+
+.stretchSection {
+  flex: 1;
+  display: flex;
+  width: 100%;
+}

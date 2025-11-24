@@ -1,0 +1,19 @@
+.dropZone {
+  border: 2px dashed #d0b0ff;
+  border-radius: 32px;
+  padding: 48px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.4);
+  color: #6f5a49;
+  font-size: 16px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropZone span {
+  color: #a358ff;
+  font-weight: 600;
+}

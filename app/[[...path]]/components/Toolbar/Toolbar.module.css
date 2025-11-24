@@ -1,0 +1,115 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.breadcrumbs {
+  flex: 1;
+  min-width: 200px;
+}
+
+.breadcrumbList {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #7b6452;
+}
+
+.breadcrumbItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumbButton {
+  border: none;
+  background: transparent;
+  color: #865aff;
+  font: inherit;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+  text-decoration: none;
+}
+
+.breadcrumbButton:hover {
+  background: rgba(156, 103, 255, 0.12);
+  color: #6533d6;
+}
+
+.breadcrumbButton:active {
+  transform: translateY(1px);
+}
+
+.currentBreadcrumb {
+  font-weight: 600;
+  color: #d93340;
+  background: rgba(217, 51, 64, 0.08);
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+
+.breadcrumbSeparator {
+  color: #bcaea4;
+}
+
+.quickActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.quickAction {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #604a38;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.quickAction:hover {
+  background: rgba(160, 105, 255, 0.16);
+}
+
+.quickAction:active {
+  transform: scale(0.97);
+  background: rgba(160, 105, 255, 0.28);
+}
+
+.toolbarMeta {
+  margin-left: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  color: #a069ff;
+}
+
+.folderCount {
+  font-weight: 500;
+}
+
+.viewSwitchers {
+  display: flex;
+  gap: 8px;
+}
+
+.viewSwitchers button {
+  border: 1px dashed #dfc7ff;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+  color: #5f4c3c;
+}

@@ -1,0 +1,16 @@
+.workspaceFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #a358ff;
+}
+
+.links {
+  display: flex;
+  gap: 16px;
+}
+
+.link {
+  color: inherit;
+}

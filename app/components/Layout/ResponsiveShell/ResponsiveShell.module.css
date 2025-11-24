@@ -1,0 +1,137 @@
+.shell {
+  width: 100%;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.sidebarWrapper {
+  width: 260px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.mobileOverlay {
+  display: none;
+}
+
+.sidebarHeader {
+  display: none;
+}
+
+.brandHeader {
+  display: none;
+}
+.headerMenuButton {
+  display: none;
+}
+.brandHeaderCard {
+  display: none;
+}
+.brandHeaderSpacer {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .shell {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .sidebarWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(320px, 85vw);
+    padding: 24px;
+    background: #fbf6ea;
+    box-shadow: 0 30px 60px rgba(15, 10, 8, 0.35);
+    transform: translateX(-100%);
+    z-index: 1200;
+    overflow-y: auto;
+    border-radius: 0 28px 28px 0;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .mobileOverlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 12, 6, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1100;
+  }
+
+  .overlayVisible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sidebarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    color: #4c3e33;
+    font-weight: 600;
+  }
+
+  .mobileClose {
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .brandHeader {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #fff;
+    border-radius: 20px;
+    position: relative;
+    z-index: 900;
+    width: 100%;
+  }
+
+  .headerMenuButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 16px;
+    border: none;
+    background: rgba(156, 103, 255, 0.12);
+    color: #7b46d5;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .headerMenuButton:hover {
+    background: rgba(156, 103, 255, 0.18);
+    transform: translateY(-1px);
+  }
+
+  .brandHeaderCard {
+    display: block;
+    justify-self: center;
+    width: 100%;
+    max-width: 240px;
+  }
+
+  .brandHeaderSpacer {
+    display: block;
+    width: 44px;
+    height: 44px;
+  }
+}

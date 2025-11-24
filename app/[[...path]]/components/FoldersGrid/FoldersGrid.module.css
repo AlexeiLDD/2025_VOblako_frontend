@@ -1,0 +1,122 @@
+.folders {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.folderCard {
+  width: 100%;
+  border-radius: 24px;
+  padding: 20px 16px;
+  min-height: 200px;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #4f3d2f;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.folderCard a {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.folderButton {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.fileCard {
+  align-items: center;
+  gap: 12px;
+}
+
+.filePreview {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  background: rgba(160, 105, 255, 0.1);
+  border: 1px solid rgba(160, 105, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.filePreviewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.filePreviewWithImage {
+  background: transparent;
+  border-color: transparent;
+}
+
+.fileMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: #7a6651;
+  align-items: center;
+  text-align: center;
+}
+
+.fileFormat {
+  font-size: 12px;
+  color: #a38874;
+}
+
+.createCard {
+  border: 1px dashed #d5c0ff;
+  background: rgba(176, 120, 255, 0.08);
+  color: #a358ff;
+  box-shadow: none;
+}
+
+.createIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #c097ff;
+  color: #fff;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.folderIcon {
+  width: 68px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #d53545, #cb2436);
+  position: relative;
+}
+
+.folderIcon::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: -8px;
+  width: 32px;
+  height: 14px;
+  border-radius: 10px 10px 0 0;
+  background: inherit;
+}
