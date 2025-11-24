@@ -26,13 +26,14 @@ import {
 } from "../Sidebar";
 import styles from "./ResponsiveShell.module.css";
 
-type ResponsiveShellProps = {
+export type ResponsiveShellProps = {
   primaryNav: SidebarNavItem[];
   secondaryNav: SidebarNavItem[];
   footerActions: SidebarNavItem[];
   shellClassName: string;
   workspaceClassName: string;
   children: ReactNode;
+  onLogout?: () => void;
 };
 
 const ICON_MAP: Record<SidebarIconName, IconComponent> = {
@@ -61,6 +62,7 @@ const ResponsiveShell = ({
   shellClassName,
   workspaceClassName,
   children,
+  onLogout,
 }: ResponsiveShellProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarId = useId();
@@ -151,6 +153,7 @@ const ResponsiveShell = ({
           primaryNav={resolvedPrimaryNav}
           secondaryNav={resolvedSecondaryNav}
           footerActions={resolvedFooterActions}
+          onLogout={onLogout}
         />
       </div>
       <div className={overlayClasses} onClick={closeSidebar} />

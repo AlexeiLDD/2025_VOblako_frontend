@@ -1,11 +1,15 @@
 .toolbar {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   gap: 16px;
-  flex-wrap: wrap;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "quick meta"
+    "tabs meta";
+  align-items: start;
 }
 .breadcrumbs {
-  flex: 1;
+  grid-area: tabs;
+  width: 100%;
   min-width: 200px;
 }
 
@@ -61,6 +65,7 @@
 }
 
 .quickActions {
+  grid-area: quick;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -89,11 +94,12 @@
 }
 
 .toolbarMeta {
-  margin-left: auto;
+  grid-area: meta;
   display: flex;
   align-items: flex-start;
   gap: 16px;
   color: #a069ff;
+  justify-self: end;
 }
 
 .folderCount {
@@ -112,4 +118,18 @@
   padding: 8px;
   cursor: pointer;
   color: #5f4c3c;
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "quick"
+      "tabs"
+      "meta";
+  }
+
+  .toolbarMeta {
+    justify-self: start;
+  }
 }

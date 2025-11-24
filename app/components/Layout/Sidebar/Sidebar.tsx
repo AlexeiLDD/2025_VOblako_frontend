@@ -9,9 +9,10 @@ type SidebarProps = {
   primaryNav: SidebarItem[];
   secondaryNav: SidebarItem[];
   footerActions: SidebarItem[];
+  onLogout?: () => void;
 };
 
-const Sidebar = ({ primaryNav, secondaryNav, footerActions }: SidebarProps) => (
+const Sidebar = ({ primaryNav, secondaryNav, footerActions, onLogout }: SidebarProps) => (
   <aside className={styles.sidebar}>
     <div className={styles.sidebarBrandDesktop}>
       <BrandCard />
@@ -22,7 +23,7 @@ const Sidebar = ({ primaryNav, secondaryNav, footerActions }: SidebarProps) => (
       <div className={styles.navDivider} />
       <NavSection items={secondaryNav} />
     </nav>
-    <SidebarFooter actions={footerActions} />
+    <SidebarFooter actions={footerActions} onLogout={onLogout} />
   </aside>
 );
 

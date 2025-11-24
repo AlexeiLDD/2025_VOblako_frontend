@@ -177,6 +177,15 @@
   box-shadow: 0 12px 30px rgba(74, 52, 37, 0.08);
 }
 
+.logoutButton {
+  background: rgba(217, 51, 64, 0.12);
+  color: #a90f1a;
+}
+
+.logoutButton:hover {
+  background: rgba(217, 51, 64, 0.2);
+}
+
 @media (max-width: 1100px) {
   .sidebar {
     width: 100%;
