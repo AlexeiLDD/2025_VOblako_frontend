@@ -1,0 +1,132 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 21, 9, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  z-index: 50;
+}
+
+.dialog {
+  width: min(520px, 100%);
+  border-radius: 28px;
+  background: #fff9f0;
+  border: 1px solid rgba(227, 209, 181, 0.8);
+  box-shadow: 0 18px 50px rgba(37, 17, 1, 0.18);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: calc(100vh - 64px);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #4d3c2f;
+}
+
+.closeButton {
+  border: none;
+  background: transparent;
+  color: #b3383f;
+  border-radius: 999px;
+  padding: 8px;
+  display: inline-flex;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.closeButton:hover {
+  background: rgba(217, 51, 64, 0.12);
+}
+
+.closeButton:active {
+  transform: scale(0.95);
+}
+
+.taskList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.taskItem {
+  border-radius: 20px;
+  border: 1px solid rgba(201, 184, 161, 0.6);
+  background: #fff;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.taskHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.taskName {
+  font-weight: 500;
+  color: #4d3c2f;
+  font-size: 15px;
+  word-break: break-word;
+}
+
+.taskMeta {
+  font-size: 12px;
+  color: #8b7561;
+  white-space: nowrap;
+}
+
+.taskStatus {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.statusPending {
+  color: #a38874;
+}
+
+.statusUploading {
+  color: #a358ff;
+}
+
+.statusSuccess {
+  color: #2f8c3f;
+}
+
+.statusError {
+  color: #b3383f;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: #b3383f;
+  margin-left: 24px;
+}
+
+.footerHint {
+  font-size: 13px;
+  color: #8b7561;
+  text-align: center;
+}

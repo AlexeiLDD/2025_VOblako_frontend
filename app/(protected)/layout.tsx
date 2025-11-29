@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { type SidebarNavItem } from "@/app/(protected)/components/Layout/Sidebar";
-import { authStore } from "@/app/api/auth/store";
+import { resolveSessionUser } from "@/app/server/auth/session";
 import styles from "@/app/layout.module.css";
 import ProtectedShell from "./ProtectedShell";
 
@@ -28,7 +28,7 @@ const FOOTER_ACTIONS: SidebarNavItem[] = [
 
 const ProtectedLayout = async ({ children }: { children: ReactNode }) => {
   const sessionId = (await cookies()).get("session_id")?.value;
-  const user = authStore.resolveSessionUser(sessionId);
+  const user = await resolveSessionUser(sessionId);
 
   if (!user) {
     redirect("/auth/login");

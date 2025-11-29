@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import type { SignupRequest } from "@/app/types/auth";
+import { isRemoteApiEnabled } from "@/app/config/apiTarget";
 import { authStore, buildAuthResponse, MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH } from "../store";
 import { jsonError, withSessionCookie } from "../utils";
+import { forwardToRemoteApi } from "../../utils/remoteProxy";
 
 const parseBody = async (request: NextRequest) => {
   try {
@@ -12,6 +14,10 @@ const parseBody = async (request: NextRequest) => {
 };
 
 export async function POST(request: NextRequest) {
+  if (isRemoteApiEnabled()) {
+    return forwardToRemoteApi(request);
+  }
+
   const body = await parseBody(request);
 
   if (!body) {

@@ -1,11 +1,18 @@
-import type { FileItem } from "@/app/types/storage";
+import { FILE_ALIAS_TO_ID } from "@/app/api/files/mockData";
+
+export type StorageFileRef = {
+  fileId: string;
+  preview?: string;
+};
 
 type StorageNode = {
   id: string;
   label: string;
   folders?: StorageNode[];
-  files?: FileItem[];
+  files?: StorageFileRef[];
 };
+
+const getFileId = (alias: keyof typeof FILE_ALIAS_TO_ID) => FILE_ALIAS_TO_ID[alias];
 
 const STORAGE_TREE: StorageNode = {
   id: "root",
@@ -19,19 +26,17 @@ const STORAGE_TREE: StorageNode = {
           id: "design",
           label: "Дизайн",
           files: [
-            { label: "Moodboard.png", meta: "PNG • 5.2 МБ", preview: "/window.svg" },
-            { label: "UI-kit.fig", meta: "FIG • 12.6 МБ" },
+            { fileId: getFileId("moodboard") },
+            { fileId: getFileId("ui-kit") },
           ],
         },
         {
           id: "marketing",
           label: "Маркетинг",
-          files: [
-            { label: "Презентация.pptx", meta: "PPTX • 14 МБ", preview: "/globe.svg" },
-          ],
+          files: [{ fileId: getFileId("marketing-deck"), preview: "/globe.svg" }],
         },
       ],
-      files: [{ label: "Roadmap.pdf", meta: "PDF • 1.9 МБ" }],
+      files: [{ fileId: getFileId("roadmap") }],
     },
     {
       id: "documents",
@@ -41,22 +46,22 @@ const STORAGE_TREE: StorageNode = {
           id: "contracts",
           label: "Договоры",
           files: [
-            { label: "Договор_А.pdf", meta: "PDF • 780 КБ" },
-            { label: "Договор_Б.pdf", meta: "PDF • 820 КБ" },
+            { fileId: getFileId("contracts-a") },
+            { fileId: getFileId("contracts-b") },
           ],
         },
       ],
       files: [
-        { label: "Отчет Q1.pdf", meta: "PDF • 2.3 МБ" },
-        { label: "Смета.xlsx", meta: "XLSX • 860 КБ" },
+        { fileId: getFileId("report-q1") },
+        { fileId: getFileId("estimate") },
       ],
     },
     {
       id: "archive",
       label: "Архив",
       files: [
-        { label: "Заметки.txt", meta: "TXT • 8 КБ" },
-        { label: "Фото.png", meta: "PNG • 4.2 МБ" },
+        { fileId: getFileId("archive-notes") },
+        { fileId: getFileId("archive-photo") },
       ],
     },
     {
@@ -67,22 +72,20 @@ const STORAGE_TREE: StorageNode = {
           id: "videos",
           label: "Видео",
           files: [
-            { label: "Promo.mov", meta: "MOV • 230 МБ" },
-            { label: "Demo.mp4", meta: "MP4 • 120 МБ" },
+            { fileId: getFileId("promo-mov") },
+            { fileId: getFileId("demo-mp4") },
           ],
         },
         {
           id: "photos",
           label: "Фото",
           files: [
-            { label: "Team.jpg", meta: "JPG • 8 МБ" },
-            { label: "Event.jpg", meta: "JPG • 6.5 МБ" },
+            { fileId: getFileId("team-photo") },
+            { fileId: getFileId("event-photo") },
           ],
         },
       ],
-      files: [
-        { label: "Обложка.psd", meta: "PSD • 45 МБ" },
-      ],
+      files: [{ fileId: getFileId("cover-psd") }],
     },
     {
       id: "personal",
@@ -92,19 +95,22 @@ const STORAGE_TREE: StorageNode = {
           id: "travels",
           label: "Путешествия",
           files: [
-            { label: "Ticket.pdf", meta: "PDF • 180 КБ" },
-            { label: "Hotel.docx", meta: "DOCX • 240 КБ" },
+            { fileId: getFileId("ticket") },
+            { fileId: getFileId("hotel-doc") },
           ],
         },
       ],
-      files: [
-        { label: "Паспорт.png", meta: "PNG • 2.5 МБ" },
-      ],
+      files: [{ fileId: getFileId("passport") }],
     },
   ],
   files: [
-    { label: "Добро пожаловать.txt", meta: "TXT • 1 КБ" },
-    { label: "Инструкция.pdf", meta: "PDF • 600 КБ" },
+    { fileId: getFileId("welcome-note") },
+    { fileId: getFileId("instructions") },
+    { fileId: getFileId("release-plan") },
+    { fileId: getFileId("architecture-spec") },
+    { fileId: getFileId("mock-pdf") },
+    { fileId: getFileId("mock-photo") },
+    { fileId: getFileId("mock-text") },
   ],
 };
 

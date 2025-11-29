@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isRemoteApiEnabled } from "@/app/config/apiTarget";
 import { authStore } from "../store";
 import { clearSessionCookie, jsonError } from "../utils";
+import { forwardToRemoteApi } from "../../utils/remoteProxy";
 
 export async function POST(request: NextRequest) {
+  if (isRemoteApiEnabled()) {
+    return forwardToRemoteApi(request);
+  }
+
   const sessionCookie = request.cookies.get("session_id")?.value;
   const user = authStore.resolveSessionUser(sessionCookie);
 

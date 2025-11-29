@@ -23,6 +23,17 @@
   box-shadow: none;
 }
 
+.fileButton {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.fileButton:focus-visible {
+  outline: 2px solid rgba(160, 105, 255, 0.8);
+  outline-offset: 4px;
+}
+
 .folderCard a {
   text-decoration: none;
   color: inherit;
@@ -54,6 +65,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 
 .filePreviewImage {
@@ -66,6 +78,17 @@
 .filePreviewWithImage {
   background: transparent;
   border-color: transparent;
+}
+
+.filePreviewFill {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.filePreviewImageFill {
+  object-fit: cover;
+  border-radius: inherit;
 }
 
 .fileMeta {
@@ -88,6 +111,15 @@
   background: rgba(176, 120, 255, 0.08);
   color: #a358ff;
   box-shadow: none;
+}
+
+.createCardButton {
+  cursor: pointer;
+}
+
+.createCardButton:focus-visible {
+  outline: 2px solid rgba(160, 105, 255, 0.8);
+  outline-offset: 4px;
 }
 
 .createIcon {

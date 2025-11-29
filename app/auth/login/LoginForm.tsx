@@ -4,6 +4,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "../AuthPage.module.css";
@@ -17,6 +18,7 @@ type LoginFormValues = {
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const LoginForm = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -40,7 +42,7 @@ const LoginForm = () => {
         return;
       }
 
-      window.location.href = "/";
+      router.replace("/");
     } catch (error) {
       if (axios.isAxiosError<ErrorResponse>(error) && error.response?.data?.status) {
         setFormMessage({ type: "error", text: error.response.data.status });

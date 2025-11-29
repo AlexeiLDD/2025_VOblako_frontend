@@ -11,14 +11,13 @@ import {
 } from "@vkontakte/icons";
 import axios from "axios";
 import { notFound } from "next/navigation";
-import { DropZone } from "./components/DropZone";
-import { FoldersGrid } from "./components/FoldersGrid";
 import type { QuickAction } from "./components/Toolbar";
 import { Toolbar } from "./components/Toolbar";
 import {
   WorkspaceFooter,
   type FooterLink,
 } from "./components/WorkspaceFooter";
+import StorageInteractiveArea from "./components/StorageInteractiveArea";
 import type { StorageResponse } from "@/app/types/storage";
 import { buildBaseUrl } from "@/app/utils/baseUrl";
 import styles from "./page.module.css";
@@ -91,6 +90,11 @@ export default async function StoragePage({ params }: PageProps) {
     return segments.length ? `/${segments.join("/")}` : "/";
   };
 
+  const foldersWithHref = folders.map((folder) => ({
+    ...folder,
+    href: buildFolderHref(folder.id),
+  }));
+
   return (
     <div className={styles.workspaceContent}>
       <Toolbar
@@ -99,19 +103,12 @@ export default async function StoragePage({ params }: PageProps) {
         viewSwitchers={VIEW_SWITCHERS}
         folderCount={folders.length}
       />
-      <div className={styles.gridWrapper}>
-        <FoldersGrid
-          folders={folders}
-          files={files}
-          buildFolderHref={(folder) => buildFolderHref(folder.id)}
-        />
-      </div>
-      <div className={styles.stretchSection}>
-        <DropZone
-          highlightText={DROP_ZONE_COPY.highlightText}
-          description={DROP_ZONE_COPY.description}
-        />
-      </div>
+      <StorageInteractiveArea
+        folders={foldersWithHref}
+        files={files}
+        dropZoneCopy={DROP_ZONE_COPY}
+        storagePathParam={pathParam}
+      />
       <WorkspaceFooter productName="VOblako" links={FOOTER_LINKS} />
     </div>
   );

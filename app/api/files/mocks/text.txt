@@ -1,0 +1,18 @@
+
+
+    [!NOTE] Make sure to define options object outside of your React component or use useMemo if you can't.
+
+Alternatively, you could use wasm directory from external CDN:
+
+// Outside of React component
+import { pdfjs } from 'react-pdf';
+
+const options = {
+  wasmUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/wasm/`,
+};
+
+// Inside of React component
+<Document options={options} />;
+
+Support for standard fonts
+If you want to support PDFs using standard fonts (deprecated in PDF 1.5, but still around), or you have encountered the following warning:

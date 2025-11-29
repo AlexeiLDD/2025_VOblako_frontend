@@ -20,6 +20,37 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Режимы API
+
+Приложение может общаться либо с встроенным мок‑API (по умолчанию), либо с внешним шлюзом, который реализует спецификации `api/auth.openapi.yaml` и `api/files.openapi.yaml`.
+
+| Режим  | Что делает | Как включить |
+|--------|------------|--------------|
+| `mock` | Использует встроенные обработчики Next.js из `app/api/**`, данные хранятся в памяти процесса. | Ничего делать не нужно, это режим по умолчанию. |
+| `remote` | Проксирует все обращения к `/api` на внешний шлюз и полагается на его cookie/ответы. | Добавьте в `.env.local`:<br>`VOBLAKO_API_TARGET=remote`<br>`VOBLAKO_REMOTE_API_BASE_URL=http://localhost:8080/api` (замените URL, если ваш шлюз доступен по другому адресу). |
+
+В режиме `remote` серверные компоненты (например, защищённый layout) автоматически проверяют сессии через шлюз, при этом мок‑логика остаётся доступной для локальной разработки.
+
+### Моки файлового API
+
+Обработчики в `app/api/files/**` реализуют основные сценарии из `api/files.openapi.yaml`:
+
+- `POST /api/files` — примет multipart‑форму с `file` и вернёт метаданные загруженного файла.
+- `POST /api/files/list` — вернёт список файлов с пагинацией (`limit`, `offset`) и флагом `with_deleted`.
+- `GET/POST/DELETE /api/files/{id}` — скачивание, перезапись и удаление файлов (удаление мягкое, но скачивание удалённых запрещено).
+- `GET /api/files/{id}/meta` и `POST /api/files/{id}/name` — чтение и переименование метаданных.
+
+Все данные хранятся в памяти процесса Node.js, поэтому перезапуск `npm run dev` сбрасывает состояние. Для проверки работы можно использовать `curl`:
+
+```bash
+curl -F "file=@README.md" http://localhost:3000/api/files
+curl -X POST -H "Content-Type: application/json" \
+  -d '{"limit":10,"offset":0}' \
+  http://localhost:3000/api/files/list
+```
+
+API папок (`GET /api/storage`) использует ту же in-memory базу файлов: структура каталога описана в `app/api/storage/data.ts`, а сами метаданные берутся из мок‑хранилища `app/api/files/mockStore.ts`. Благодаря этому, карточки в рабочем пространстве показывают актуальные имена/типы/размеры, а эндпойнты `/api/files/**` отвечают за реальные байты и операции с файлами.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
