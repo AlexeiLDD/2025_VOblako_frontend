@@ -6,15 +6,19 @@ import { emptySuccess, jsonError } from "../../responses";
 import type { UpdateFilenameRequest } from "@/app/types/files";
 
 type RouteContext = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export async function POST(request: NextRequest, { params }: RouteContext) {
+const resolveParams = async (params: RouteContext["params"]) => params;
+
+export async function POST(request: NextRequest, context: RouteContext) {
   if (isRemoteApiEnabled()) {
     return forwardToRemoteApi(request);
   }
+
+  const { id } = await resolveParams(context.params);
 
   let payload: UpdateFilenameRequest;
   try {
@@ -28,7 +32,7 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
     return jsonError("Filename must have length between 1 and 50", 400);
   }
 
-  const metadata = getMetadata(params.id);
+  const metadata = getMetadata(id);
   if (!metadata) {
     return jsonError("Invalid ID format", 400);
   }
@@ -37,7 +41,7 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
     return jsonError("User have no access to this content", 403);
   }
 
-  const renamed = renameFile(params.id, filename);
+  const renamed = renameFile(id, filename);
   if (!renamed) {
     return jsonError("Invalid ID format", 400);
   }

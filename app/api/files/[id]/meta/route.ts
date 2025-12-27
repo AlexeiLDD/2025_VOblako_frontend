@@ -5,17 +5,21 @@ import { getMetadata } from "../../mockStore";
 import { jsonError } from "../../responses";
 
 type RouteContext = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export async function GET(_request: NextRequest, { params }: RouteContext) {
+const resolveParams = async (params: RouteContext["params"]) => params;
+
+export async function GET(_request: NextRequest, context: RouteContext) {
   if (isRemoteApiEnabled()) {
     return forwardToRemoteApi(_request);
   }
 
-  const metadata = getMetadata(params.id);
+  const { id } = await resolveParams(context.params);
+
+  const metadata = getMetadata(id);
   if (!metadata) {
     return jsonError("Invalid ID format", 400);
   }

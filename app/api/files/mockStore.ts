@@ -206,3 +206,8 @@ export const getFilePayload = (id: string) => {
     content: existing.content,
   };
 };
+
+// Test-only helper to restore in-memory state between runs
+export const __resetMockStore = () => {
+  files.clear();
+};

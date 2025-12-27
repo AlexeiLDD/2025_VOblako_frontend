@@ -46,7 +46,15 @@ export async function GET(request: NextRequest, context: RouteContext) {
     return jsonError("User have no access to this content", 403);
   }
 
-  const response = new NextResponse(payload.content, {
+  // Copy into a fresh ArrayBuffer to avoid SharedArrayBuffer typing issues
+  const contentBuffer = (() => {
+    const buffer = new ArrayBuffer(payload.content.byteLength);
+    const view = new Uint8Array(buffer);
+    view.set(payload.content);
+    return buffer;
+  })();
+
+  const response = new NextResponse(contentBuffer, {
     headers: {
       "Content-Type": payload.metadata.content_type,
       "Content-Length": String(payload.metadata.size),
